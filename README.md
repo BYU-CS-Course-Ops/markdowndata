@@ -5,6 +5,13 @@ clean and structured data as well as improves data visualization.
 
 The tool is particularly useful for data which is often being updated such as in educational contexts. 
 
+## Structure
+
+ - **h1** Marks the start of a new key value pair in the JSON object
+   - It will be followed by a table with the key-value pairs, 
+     it will consist of the same key value pairs for each subsequent h1
+ - **h2** These can be used as a list of dictionary values under the h1 key
+
 ## Example
 
 <table>
