@@ -14,7 +14,7 @@ class MarkDataParser:
         :return: Nested dictionary of extracted tables organized by H1 and H2 sections.
         """
         if isinstance(file, str):
-            with open(file, 'r', encoding='utf-8') as f:
+            with open(file, 'r') as f:
                 md_text = f.read()
         else:
             md_text = file.read()

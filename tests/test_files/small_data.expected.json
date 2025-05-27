@@ -1,0 +1,35 @@
+{
+  "Foo 1": {
+    "Author": "Bar",
+    "Date": "Baz",
+    "Title": "Foo",
+    "Bar": [
+      {
+        "Name": "Foo",
+        "Value": "Bar"
+      },
+      {
+        "Name": "Baz",
+        "Value": "Qux"
+      },
+      {
+        "Name": "Qux",
+        "Value": "Quux"
+      }
+    ],
+    "Baz": [
+      {
+        "Description": "A foo item",
+        "Item": "Foo"
+      },
+      {
+        "Description": "A bar item",
+        "Item": "Bar"
+      },
+      {
+        "Description": "A baz item",
+        "Item": "Baz"
+      }
+    ]
+  }
+}
