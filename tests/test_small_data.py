@@ -2,6 +2,7 @@ import json
 import markdata
 from test_utils.test_utils import TESTS
 
+
 def test_small_data():
     # Load the small data from the markdata package
     with open(TESTS / "small_data.input.md") as file:
@@ -15,6 +16,7 @@ def test_small_data():
 
     # Compare the loaded data with the expected data
     assert small_data == expected_data, "Loaded data does not match expected data"
+
 
 if __name__ == "__main__":
     test_small_data()

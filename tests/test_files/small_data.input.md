@@ -1,8 +1,10 @@
 # Foo 1
 
-| Title | Author | Date | 
-|-------|--------|------|
-| Foo   | Bar    | Baz  |
+---
+Title: Foo
+Author: Bar
+Date: Baz
+---
 
 ## Bar 
 | Name | Value |
