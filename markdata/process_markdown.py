@@ -1,9 +1,6 @@
-import re
-import yaml
 from typing import Union, List, IO
-
-from section_tree import split_sections, build_section_tree
-
+from .section_tree import split_sections, build_section_tree
+from .utils import Node
 
 class MarkDataParser:
     def __init__(self):
@@ -15,20 +12,21 @@ class MarkDataParser:
                 text = f.read()
         else:
             text = file.read()
+
         flat_sections = split_sections(text)
         structured_tree = build_section_tree(flat_sections)
-        self.data = self._build_nested_dict(structured_tree)
+        self.data = self._build_dict_from_tree(structured_tree)
         return self.data
 
-    def _build_nested_dict(self, sections: List[dict]) -> dict:
+    def _build_dict_from_tree(self, sections: List[Node]) -> dict:
         result = {}
-        for section in sections:
-            sub_dict = self._build_nested_dict(section['subsections'])
-            if isinstance(section['parsed'], dict):
-                merged = {**section['parsed'], **sub_dict}
-            elif section['parsed'] or sub_dict:
-                merged = section['parsed'] if section['parsed'] else sub_dict
+        for node in sections:
+            sub_dict = self._build_dict_from_tree(node.subsections)
+            if isinstance(node.parsed, dict):
+                merged = {**node.parsed, **sub_dict}
+            elif node.parsed or sub_dict:
+                merged = node.parsed if node.parsed else sub_dict
             else:
-                merged = section['parsed']
-            result[section['title']] = merged
+                merged = node.parsed
+            result[node.title] = merged
         return result
