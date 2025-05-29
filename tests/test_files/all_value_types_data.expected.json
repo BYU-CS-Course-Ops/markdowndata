@@ -1,0 +1,35 @@
+{
+  "Test": {
+    "title": "Test All Value Types Data",
+    "description": "This file contains all value types in Markdown format.",
+    "MD Table": [
+      {
+        "Name": "string",
+        "Type": "string",
+        "Description": "A string value"
+      },
+      {
+        "Name": "integer",
+        "Type": "integer",
+        "Description": "An integer value"
+      },
+      {
+        "Name": "float",
+        "Type": "float",
+        "Description": "A float value"
+      },
+      {
+        "Name": "boolean",
+        "Type": "boolean",
+        "Description": "A boolean value"
+      }
+    ],
+    "MD List": [
+      "string: A string value",
+      "integer: An integer value",
+      "float: A float value",
+      "boolean: A boolean value"
+    ],
+    "MD Text": "This is a test file that contains all value types in Markdown format. It includes a table and a list of different data types with their descriptions."
+  }
+}

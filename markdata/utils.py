@@ -34,7 +34,9 @@ def get_md_soup(text: str) -> BeautifulSoup:
     """
     Converts a Markdown text block into HTML and parses it into a BeautifulSoup object.
     """
-    md_parser = MarkdownIt().enable("table")  # Enables markdown table parsing
+    md_parser = MarkdownIt()
+    md_parser.enable("table")  # Enables markdown table parsing
+    md_parser.enable("code")   # Enables markdown code parsing
     html = md_parser.render(text)
     return BeautifulSoup(html, 'html.parser')
 

@@ -77,11 +77,12 @@ def md_list_parser(text: str) -> list:
 
 def md_text_parser(text: str) -> str:
     """
-    Parse a Markdown text block and returns its text content as a string.
-    This acts as a fallback if the block is not YAML, table, or list.
+    Parse a Markdown text block and return its text content as a string.
+    Ensures lines flow together as a paragraph, not split across lines.
     """
     soup = get_md_soup(text)
-    return convert_value(soup.get_text(strip=True))
+    raw_text = soup.get_text(strip=True)
+    return convert_value(' '.join(raw_text.splitlines()))
 
 
 def parse_content_block(text: str):
