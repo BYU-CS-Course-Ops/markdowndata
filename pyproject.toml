@@ -8,6 +8,8 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.10"
 pyyaml = "^6.0.2"
+bs4 = "^0.0.2"
+markdown-it-py = "^3.0.0"
 
 [tool.poetry.group.dev.dependencies]
 python-dotenv = "^1.0.1"
