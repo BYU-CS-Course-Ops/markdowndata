@@ -1,0 +1,18 @@
+{
+  "Day 1": {
+    "Title": "Complex Data",
+    "Complex Data Structures": [
+      "Lists",
+      "Dictionaries",
+      "Strings"
+    ]
+  },
+  "Day 2": {
+    "Title": "Advanced Data Handling",
+    "Advanced Data Structures": [
+      "Nested Lists",
+      "Nested Dictionaries",
+      "JSON Objects"
+    ]
+  }
+}
