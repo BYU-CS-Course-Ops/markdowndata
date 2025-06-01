@@ -1,23 +1,31 @@
-# MarkData
+# MarkdownData
 
-MarkData is a Python tool designed to transform markdown tables into json objects, which allows for 
+MarkdownData is a Python tool designed to transform markdown tables into json objects, which allows for 
 clean and structured data as well as improves data visualization. 
 
-The tool is particularly useful for data which is often being updated such as in educational contexts. 
+The tool is particularly useful for data which is often being modified such as in educational contexts. 
+
+## Installation
+
+To install MarkdownData, you can use pip:
+
+```bash
+pip install markdowndata
+```
 
 ## Structure
 
- - **h1** Marks the start of a new key value pair in the JSON object
-   - It will be followed by a table with the key-value pairs, 
-     it will consist of the same key value pairs for each subsequent h1
- - **h2** These can be used as a list of dictionary values under the h1 key
+Each header represents a new JSON object key value pair. Header 1 `#` are the highest level keys, and each 
+subsequent header level `##`, `###`, etc. represents a nested key within the parent key.
 
-## Example
+## Supported Values
+
+### **YAML Dictionaries**
 
 <table>
     <thead>
         <tr>
-            <th>Structure</th>
+            <th>Markdown</th>
             <th>Result</th>
         </tr>
     </thead>
@@ -26,115 +34,25 @@ The tool is particularly useful for data which is often being updated such as in
 <td>
 
 ```markdown
+# Header
 
-# Day 1
-
-| Title | Description |
-|-------|-------------|
-| foo   | bar         |
-
-## Video
-
-| Title | Description |         Url         |
-|-------|-------------|---------------------|
-| foo   | bar         | https://example.com |
-| baz   | qux         | https://example.com |
-| quux  | quuz        | https://example.com |
-
-## Links
-
-| Title |         Url         |
-|-------|---------------------|
-| foo   | https://example.com |
-| bar   | https://example.com |
-
-# Day 2
-
-| Title | Description |
-|-------|-------------|
-| foo   | bar         |
-
-## Links
-
-| Title |         Url         |
-|-------|---------------------|
-| bar   | https://example.com |
-
-# Day 3
-
-| Title | Description |
-|-------|-------------|
-| foo   | bar         |
-
-## Video
-
-| Title | Description |         Url         |
-|-------|-------------|---------------------|
-| baz   | qux         | https://example.com |
-| quux  | quuz        | https://example.com |
+---
+Key1: Value1
+Key2: Value2
+Key3: Value3
+---
 ```
+
 </td>
 <td>
 
 ```json
 {
-  "Day 1": {
-    "Title": "foo",
-    "Description": "bar",
-    "Video": [
-      {
-        "Title": "foo",
-        "Description": "bar",
-        "Url": "https://example.com"
-      },
-      {
-        "Title": "baz",
-        "Description": "qux",
-        "Url": "https://example.com"
-      },
-      {
-        "Title": "quux",
-        "Description": "quuz",
-        "Url": "https://example.com"
-      }
-    ],
-    "Links": [
-      {
-        "Title": "foo",
-        "Url": "https://example.com"
-      },
-      {
-        "Title": "bar",
-        "Url": "https://example.com"
-      }
-    ]
-  },
-  "Day 2": {
-      "Title": "foo",
-      "Description": "bar",
-      "Links": [
-      {
-          "Title": "bar",
-          "Url": "https://example.com"
-      }
-      ]
-  },
-  "Day 3": {
-    "Title": "foo",
-    "Description": "bar",
-    "Video": [
-      {
-        "Title": "baz",
-        "Description": "qux",
-        "Url": "https://example.com"
-      },
-      {
-        "Title": "quux",
-        "Description": "quuz",
-        "Url": "https://example.com"
-      }
-    ]
-  }
+    "Header": {
+        "Key1": "Value1",
+        "Key2": "Value2",
+        "Key3": "Value3"
+    }
 }
 ```
 
@@ -142,5 +60,112 @@ The tool is particularly useful for data which is often being updated such as in
 </tr>
 </table>
 
+### **MD List**
 
+<table>
+    <thead>
+        <tr>
+            <th>Markdown</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+<tr>
+<td>
 
+```markdown
+# Header
+
+- Item1
+- Item2
+- Item3
+- Item4
+```
+
+</td>
+<td>
+
+```json
+{
+    "Header": [
+        "Item1", "Item2",
+        "Item3", "Item4"
+    ]
+}
+```
+
+</td>
+</tr>
+</table>
+
+### **MD Table**
+
+<table>
+    <thead>
+        <tr>
+            <th>Markdown</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+<tr>
+<td>
+
+```markdown
+# Header
+
+| Name | Age | City        |
+|------|-----|-------------|
+| John | 30  | New York    |
+| Jane | 25  | Los Angeles |
+| Doe  | 22  | Chicago     |
+```
+
+</td>
+<td>
+
+```json
+{
+    "Header": [
+        {"Name": "John", "Age": 30, "City": "New York"},
+        {"Name": "Jane", "Age": 25, "City": "Los Angeles"},
+        {"Name": "Doe", "Age": 22, "City": "Chicago"}
+    ]
+}
+```
+
+</td>
+</tr>
+</table>
+
+### **MD String**
+
+<table>
+    <thead>
+        <tr>
+            <th>Markdown</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+<tr>
+<td>
+
+```markdown
+# Header
+
+This is a simple string.
+```
+
+</td>
+<td>
+
+```json
+{
+    "Header": "This is a simple string."
+}
+```
+
+</td>
+</tr>
+</table>
