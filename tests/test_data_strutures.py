@@ -35,3 +35,10 @@ def test_complex_data():
         expected_file="complex_data.expected.json"
     )
 
+
+def test_sample_data():
+    build_test(
+        input_file="sample_data.input.md",
+        expected_file="sample_data.expected.json"
+    )
+

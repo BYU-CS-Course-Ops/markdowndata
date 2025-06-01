@@ -43,12 +43,11 @@ def get_md_soup(text: str) -> BeautifulSoup:
 
 def convert_value(value: str) -> Union[int, float, str]:
     """
-    Convert a string to an int or float is possible, or return the original string.
+    Convert a string to an int, float, or datetime object is possible, or return the original string.
     """
-    value = value.strip()
     try:
+        value = value.strip()
         num = float(value)
         return int(num) if num.is_integer() else num
-    except ValueError:
+    except (ValueError, AttributeError):
         return value
-
