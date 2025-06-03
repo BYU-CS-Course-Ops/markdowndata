@@ -1,8 +1,12 @@
+import re
 from typing import Union
 from dataclasses import dataclass
 
 from bs4 import BeautifulSoup
 from markdown_it import MarkdownIt
+
+
+STRUCTURAL_LINE_RE = re.compile(r'^(\s*[-*+]\s+|\s*\d+\.\s+|\|.+\||>\s*)')
 
 
 @dataclass
@@ -41,13 +45,33 @@ def get_md_soup(text: str) -> BeautifulSoup:
     return BeautifulSoup(html, 'html.parser')
 
 
+def is_single_tag_block(soup, tag_name: str) -> bool:
+    """
+    Check if the block consists of a single top-level tag (e.g. <table>, <ul>)
+    with no other sibling tags.
+    """
+    tags = soup.find_all(recursive=False)
+    return len(tags) == 1 and tags[0].name == tag_name
+
+
+def is_structural_line(line: str) -> bool:
+    """
+    Returns True if the line is a Markdown block element (list, table row, blockquote).
+    """
+    return bool(STRUCTURAL_LINE_RE.match(line))
+
+
 def convert_value(value: str) -> Union[int, float, str]:
     """
     Convert a string to an int, float, or datetime object is possible, or return the original string.
     """
     try:
         value = value.strip()
-        num = float(value)
-        return int(num) if num.is_integer() else num
+        if value.isdigit():
+            return int(value)
+        elif '.' in value:
+            return float(value)
+        else:
+            return value
     except (ValueError, AttributeError):
         return value

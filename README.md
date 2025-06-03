@@ -156,7 +156,8 @@ Key3: Value3
 ```markdown
 # Header
 
-This is a simple string.
+This is a md string with **bold** text and *italic* text.
+As well as `inline code` and a [link](https://example.com).
 ```
 
 </td>
@@ -164,7 +165,7 @@ This is a simple string.
 
 ```json
 {
-    "Header": "This is a simple string."
+    "Header": "This is a md string with **bold** text and *italic* text. As well as `inline code` and a [link](https://example.com)."
 }
 ```
 
@@ -174,7 +175,7 @@ This is a simple string.
 
 ## Example Usage
 
-To convert a markdown file to a JSON-like object, you can use the following code:
+To convert a markdown file to a JSON object, you can use the following code:
 
 ```python
 import markdowndata
@@ -294,3 +295,7 @@ print(data['name'])                    # Output: Test Dataset
 print(data['version'])                 # Output: 1
 print(data['metadata']['created_by'])  # Output: John Doe
 ```
+
+## More Examples
+
+You can find more examples in the [`tests/test_files`](tests/test_files) directory of the repository.

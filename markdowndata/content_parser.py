@@ -1,13 +1,13 @@
 import re
 import yaml
 
-from .utils import convert_value, get_md_soup
+from .utils import convert_value, get_md_soup, is_single_tag_block, is_structural_line
 
 
 def detect_value_type(text: str) -> str | None:
     """
     Detect the type of content block (YAML, table, list, or text).
-    Returns the content type string or None if no match is found.
+    Only classifies as md_table or md_list if the content is *only* that structure.
     """
     text = text.strip()
     if not text:
@@ -17,16 +17,19 @@ def detect_value_type(text: str) -> str | None:
     if re.search(r'===\s*\n(.*?)\n===', text, re.DOTALL):
         return 'yaml_dict'
 
-    # Convert markdown to HTML and analyze for tables, lists, or text
+    # Convert markdown to HTML
     soup = get_md_soup(text)
-    if soup.find('table'):
-        return 'md_table'
-    elif soup.find('ul'):
-        return 'md_list'
-    elif soup.get_text(strip=True):
-        return 'md_text'
 
-    return None
+    # Check for exactly one <table> and no other tags or text
+    if soup.find('table') and is_single_tag_block(soup, 'table'):
+        return 'md_table'
+
+    # Check for exactly one <ul> and no other tags or text
+    if soup.find('ul') and is_single_tag_block(soup, 'ul'):
+        return 'md_list'
+
+    # Fallback: process everything as Markdown text
+    return 'md_text'
 
 
 def yaml_dict_parser(text: str) -> dict:
@@ -77,12 +80,75 @@ def md_list_parser(text: str) -> list:
 
 def md_text_parser(text: str) -> str:
     """
-    Parse a Markdown text block and return its text content as a string.
-    Ensures lines flow together as a paragraph, not split across lines.
+    Parse Markdown text by:
+    - Joining lines separated by a single newline (soft breaks)
+    - Preserving formatting (bold, italic, headers, code, code block, etc.)
+    - Preserving paragraph breaks (double or more newlines)
+    - Preserving fenced code blocks exactly
     """
-    soup = get_md_soup(text)
-    raw_text = soup.get_text(strip=True)
-    return convert_value(' '.join(raw_text.splitlines()))
+    process_text = process_code_blocks(text, process_soft_breaks)
+    return convert_value(process_text)
+
+
+def process_code_blocks(text: str, non_code_callback) -> str:
+    """
+    Process Markdown text, preserving fenced code blocks and applying a transformation
+    only to the non-code sections using `non_code_callback`.
+    """
+    code_pattern = re.compile(r'```.*?```', re.DOTALL)
+    result = []
+    last_end = 0
+
+    for match in code_pattern.finditer(text):
+        start, end = match.span()
+        non_code_part = text[last_end:start]
+        code_block = match.group()
+
+        if non_code_part.strip():
+            result.append(non_code_callback(non_code_part))
+        result.append(code_block)
+
+        last_end = end
+
+    remaining = text[last_end:]
+    if remaining.strip():
+        result.append(non_code_callback(remaining))
+
+    return '\n\n'.join(result)
+
+
+def process_soft_breaks(text: str) -> str:
+    """
+    Joins lines separated by a single newline, except for Markdown block elements:
+    - Lists
+    - Tables
+    - Blockquotes
+    Preserves paragraph breaks (2+ newlines).
+    """
+    lines = text.split('\n')
+    processed = []
+    paragraph_lines = []
+
+    for line in lines:
+        if line.strip() == '':
+            if paragraph_lines:
+                processed.append(' '.join(paragraph_lines))
+                paragraph_lines = []
+            processed.append('')
+            continue
+
+        if is_structural_line(line):
+            if paragraph_lines:
+                processed.append(' '.join(paragraph_lines))
+                paragraph_lines = []
+            processed.append(line)
+        else:
+            paragraph_lines.append(line.strip())
+
+    if paragraph_lines:
+        processed.append(' '.join(paragraph_lines))
+
+    return '\n'.join(processed)
 
 
 def parse_content_block(text: str):

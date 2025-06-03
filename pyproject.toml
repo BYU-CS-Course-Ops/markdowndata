@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "markdowndata"
-version = "0.0.2"
+version = "0.0.3"
 description = "Tool to convert markdown tables into json objects"
 authors = ["Gordon Bean <gbean@cs.byu.edu>", "Robert Greathouse <robbykap@byu.edu>"]
 license = "MIT"

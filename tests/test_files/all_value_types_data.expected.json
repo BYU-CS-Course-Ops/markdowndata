@@ -24,12 +24,16 @@
         "Description": "A boolean value"
       }
     ],
+    "MD Content Table": "Since there is a line of text here this tale will not be rendered as a list of objects.\n\n| Name    | Type    | Description      |\n|---------|---------|------------------|\n| string  | string  | A string value   |\n| integer | integer | An integer value |\n| float   | float   | A float value    |\n| boolean | boolean | A boolean value  |",
     "MD List": [
       "string: A string value",
       "integer: An integer value",
       "float: A float value",
       "boolean: A boolean value"
     ],
-    "MD Text": "This is a test file that contains all value types in Markdown format. It includes a table and a list of different data types with their descriptions."
-  }
+    "MD Content List": "Since there is a line of text here this list will not be rendered as a list of items.\n\n- string: A string value\n- integer: An integer value\n- float: A float value\n- boolean: A boolean value",
+    "MD Content": "This is markdown content with various value types. It includes strings, integers, floats, and booleans. We can also have **bold text**, *italic text*, and `inline code`.",
+    "MD Content with Code Block": "```python\ndef example_function():\n    print(\"This is an example function.\")\n```"
+  },
+  "MD Content with Code Block and Text": "This is markdown content with a code block below.\n\n\n\n```python\ndef example_function():\n    print(\"This is an example function.\")\n```"
 }

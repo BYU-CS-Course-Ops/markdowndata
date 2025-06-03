@@ -1,0 +1,7 @@
+{
+  "A simple table with text": "This is a table of days of the week:\n\n| Day       | Description            |\n|-----------|------------------------|\n| Monday    | Start of the week      |\n| Tuesday   | Second day of the week |\n| Wednesday | Midweek day            |\n| Thursday  | Almost weekend         |\n| Friday    | End of the work week   |",
+  "Another Section": "This section has a list:\n- Item 1\n- Item 2\n- Item 3\n- Item 4",
+  "Code Block": "```python\nprint('hello world')\n\nvalue = 8 + 9\nprint(value)\n```",
+  "Markdown Content": "This is a md string with **bold**, *italic*, ***bolded italic***, ~strikethrough~, and `inline code`. It also contains a [link](https://example.com) as well as <p>HTML content</p>.\n\n\n\n```python\nprint('hello world')\nprint(5 + 3)\n```\n\n\n\nMore _**text**_ with various formatting.",
+  "New Section": "This is a new section with **more bold text** and *more italic text*."
+}

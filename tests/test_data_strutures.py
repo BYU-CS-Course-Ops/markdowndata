@@ -15,6 +15,13 @@ def test_medium_data():
     )
 
 
+def test_md_content_data():
+    build_test(
+        input_file="md_content_data.input.md",
+        expected_file="md_content_data.expected.json"
+    )
+
+
 def test_all_value_types_data():
     build_test(
         input_file="all_value_types_data.input.md",
