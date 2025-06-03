@@ -41,4 +41,3 @@ def test_sample_data():
         input_file="sample_data.input.md",
         expected_file="sample_data.expected.json"
     )
-
