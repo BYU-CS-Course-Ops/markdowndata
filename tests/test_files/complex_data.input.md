@@ -1,8 +1,8 @@
 # Day 1
 
----
+===
 Title: Complex Data
----
+===
 
 ## Complex Data Structures
 
@@ -12,9 +12,9 @@ Title: Complex Data
 
 # Day 2
 
----
+===
 Title: Advanced Data Handling
----
+===
 
 ## Advanced Data Structures
 

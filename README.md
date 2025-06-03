@@ -38,11 +38,11 @@ The MarkdownData tool supports the following markdown structures:
 ```markdown
 # Header
 
----
+===
 Key1: Value1
 Key2: Value2
 Key3: Value3
----
+===
 ```
 
 </td>
@@ -90,8 +90,8 @@ Key3: Value3
 ```json
 {
     "Header": [
-        "Item1", "Item2",
-        "Item3", "Item4"
+        "Item1", "Item2", "Item3", "Item4"
+    
     ]
 }
 ```
@@ -185,6 +185,17 @@ with open('example.md') as file:
 
 So with the above example, if `example.md` contains:
 
+<table>
+    <thead>
+        <tr>
+            <th>Markdown</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+<tr>
+<td>
+
 ```markdown
 # name
 
@@ -196,11 +207,16 @@ Test Dataset
 
 # metadata
 
----
+===
 created_by: John Doe
 date: "2025-06-01"
-tags: ["example", "test", "json"]
----
+===
+
+## tags
+
+- example
+- test
+- json
 
 # data 
  
@@ -211,16 +227,65 @@ tags: ["example", "test", "json"]
 
 # summary
 
----
+===
 total_items: 2
-average_values: [25, 35, 45]
----
+average_values: [25, 35, 45, 50, 65]
+===
 
 # notes
 
 - This is a test dataset.
 - Values are illustrative.
 ```
+
+</td>
+<td>
+
+```json
+{
+  "name": "Test Dataset",
+  "version": 1,
+  "metadata": {
+    "created_by": "John Doe",
+    "date": "2025-06-01",
+    "tags": [
+      "example", 
+      "test", 
+      "json"
+    ]
+  },
+  "data": [
+    {
+      "id": 1,
+      "value": 10,
+      "attribute": "blue"
+    },
+    {
+      "id": 2,
+      "value": 40,
+      "attribute": "red"
+    }
+  ],
+  "summary": {
+    "total_items": 2,
+    "average_values": [
+      25, 
+      35, 
+      45,
+      50,
+      65
+    ]
+  },
+  "notes": [
+    "This is a test dataset.",
+    "Values are illustrative."
+  ]
+}
+```
+
+</td>
+</tr>
+</table>
 
 You can access the data as follows:
 

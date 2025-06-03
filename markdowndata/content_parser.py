@@ -13,8 +13,8 @@ def detect_value_type(text: str) -> str | None:
     if not text:
         return None
 
-    # YAML detection (delimited by ---)
-    if re.search(r'---\s*\n(.*?)\n---', text, re.DOTALL):
+    # YAML detection (delimited by ===)
+    if re.search(r'===\s*\n(.*?)\n===', text, re.DOTALL):
         return 'yaml_dict'
 
     # Convert markdown to HTML and analyze for tables, lists, or text
@@ -31,10 +31,10 @@ def detect_value_type(text: str) -> str | None:
 
 def yaml_dict_parser(text: str) -> dict:
     """
-    Parse YAML from a string (surrounded by ---) and returns it as a dictionary.
+    Parse YAML from a string (surrounded by ===) and returns it as a dictionary.
     Assumes YAML is a block at the beginning of the text.
     """
-    match = re.search(r'---\s*\n(.*?)\n---', text, re.DOTALL)
+    match = re.search(r'===\s*\n(.*?)\n===', text, re.DOTALL)
     if match:
         yaml_data = yaml.safe_load(match.group(1))
         if yaml_data:

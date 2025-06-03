@@ -1,9 +1,9 @@
 # Day 1
 
----
+===
 Title: pizza
 Description: A delicious pizza recipe
---- 
+=== 
 
 ## Ingredients
 
@@ -33,10 +33,10 @@ Description: A delicious pizza recipe
 
 ## Possible Recipe
 
---- 
+=== 
 Title: pasta
 Description: A simple pasta recipe
----
+===
 
 ### Ingredients
 

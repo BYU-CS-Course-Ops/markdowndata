@@ -1,10 +1,10 @@
 # Foo 1
 
----
+===
 Title: Foo
 Author: Bar
 Date: Baz
----
+===
 
 ## Bar 
 | Name | Value |

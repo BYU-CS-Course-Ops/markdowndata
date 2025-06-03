@@ -8,11 +8,16 @@ Test Dataset
 
 # metadata
 
----
+===
 created_by: John Doe
 date: "2025-06-01"
-tags: ["example", "test", "json"]
----
+===
+
+## tags
+
+- example
+- test
+- json
 
 # data 
  
@@ -23,10 +28,10 @@ tags: ["example", "test", "json"]
 
 # summary
 
----
+===
 total_items: 2
 average_values: [25, 35, 45]
----
+===
 
 # notes
 
