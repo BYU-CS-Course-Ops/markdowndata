@@ -1,6 +1,7 @@
 name: MarkdownData Prebuild
 
 on:
+  workflow_dispatch:
   pull_request:
     branches: [main]
     types: [opened, synchronize]
