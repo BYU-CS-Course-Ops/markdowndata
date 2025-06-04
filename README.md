@@ -370,6 +370,7 @@ You can access the data as follows:
 print(data['name'])                    # Output: Test Dataset
 print(data['version'])                 # Output: 1.0
 print(data['metadata']['created_by'])  # Output: John Doe
+print(data['summary']['total_items'])  # Output: 2
 ```
 
 ## More Examples
