@@ -368,7 +368,7 @@ You can access the data as follows:
 
 ```python
 print(data['name'])                    # Output: Test Dataset
-print(data['version'])                 # Output: 1
+print(data['version'])                 # Output: 1.0
 print(data['metadata']['created_by'])  # Output: John Doe
 ```
 
