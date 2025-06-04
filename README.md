@@ -15,7 +15,7 @@ pip install markdowndata
 
 ## Structure
 
-Each header represents a new JSON object, key value pair. Header 1 `#` are the highest level keys, and each 
+Each header represents a new key value pair. Header 1 `#` are the highest level keys, and each 
 subsequent sub-header level `##`, `###`, etc. represents a nested key within the parent key.
 
 ## Supported Values
