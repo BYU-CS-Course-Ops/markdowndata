@@ -175,6 +175,82 @@ As well as `inline code` and a [link](https://example.com).
 
 ## Example Usage
 
+There are two ways to use MarkdownData:
+1. **From a String**: You can pass a markdown string directly to the `loads` function.
+2. **From a File**: You can read a markdown file and pass its content to the `load` function.
+
+### Markdown String to JSON Object
+
+To convert a markdown string to a JSON object, you can use the following code:
+
+```python
+import markdowndata
+
+md_string = """
+# name
+
+Foo Bar
+
+# birthdays
+
+| date       | name    |
+|------------|---------|
+| 2023-01-01 | Alice   |
+| 2023-02-02 | Bob     |
+| 2023-03-03 | Charlie |
+
+# ice cream
+
+===
+location: Dairy Queen
+rating: 5
+===
+
+## flavors
+
+- chocolate
+- vanilla
+- strawberry
+- mint chocolate chip
+"""
+
+data = markdowndata.loads(md_string)
+```
+
+Which will result in the following JSON object:
+
+```json
+{
+  "name": "Foo Bar",
+  "birthdays": [
+    {
+      "date": "2023-01-01",
+      "name": "Alice"
+    },
+    {
+      "date": "2023-02-02",
+      "name": "Bob"
+    },
+    {
+      "date": "2023-03-03",
+      "name": "Charlie"
+    }
+  ],
+  "ice cream": {
+    "location": "Dairy Queen",
+    "rating": 5,
+    "flavors": [
+      "chocolate",
+      "vanilla",
+      "strawberry",
+      "mint chocolate chip"
+    ]
+  }
+}
+```
+
+### Markdown File to JSON Object
+
 To convert a markdown file to a JSON object, you can use the following code:
 
 ```python
@@ -184,7 +260,7 @@ with open('example.md') as file:
     data = markdowndata.load(file)
 ```
 
-So with the above example, if `example.md` contains:
+With the above example, if `example.md` contains the following markdown the results will be as follows:
 
 <table>
     <thead>
@@ -299,3 +375,8 @@ print(data['metadata']['created_by'])  # Output: John Doe
 ## More Examples
 
 You can find more examples in the [`tests/test_files`](tests/test_files) directory of the repository.
+
+## Things to Note
+
+- With the `YAML Dictionaries`, dates which are in the format `YYYY-MM-DD` and not wrapped in quotes will be
+converted to a `datetime.date` object. If you want to keep the date as a string, you can wrap it in quotes.

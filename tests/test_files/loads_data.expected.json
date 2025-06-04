@@ -1,0 +1,27 @@
+{
+  "name": "Foo Bar",
+  "birthdays": [
+    {
+      "date": "2023-01-01",
+      "name": "Alice"
+    },
+    {
+      "date": "2023-02-02",
+      "name": "Bob"
+    },
+    {
+      "date": "2023-03-03",
+      "name": "Charlie"
+    }
+  ],
+  "ice cream": {
+    "location": "Dairy Queen",
+    "rating": 5,
+    "flavors": [
+      "chocolate",
+      "vanilla",
+      "strawberry",
+      "mint chocolate chip"
+    ]
+  }
+}

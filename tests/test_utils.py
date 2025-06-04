@@ -4,17 +4,21 @@ from pathlib import Path
 
 TESTS = Path("test_files")
 
-def build_test(input_file: str, expected_file: str):
-    # Load the input data
-    with open(TESTS / input_file) as file:
-        data = markdowndata.load(file)
+def build_test(expected_output: str, input_file: str = None, input_string: str = None):
+    if input_file:
+        with open(TESTS / input_file) as file:
+            data = markdowndata.load(file)
+    elif input_string:
+        data = markdowndata.loads(input_string)
+    else:
+        raise ValueError("Either input_file or input_string must be provided")
 
     # Check if the data is loaded correctly
     assert isinstance(data, dict), f"Loaded data from {input_file} should be a dictionary"
 
     # Load the expected data
-    with open(TESTS / expected_file, 'r') as expected_output:
+    with open(TESTS / expected_output, 'r') as expected_output:
         expected_data = json.load(expected_output)
 
     # Compare the loaded data with the expected data
-    assert data == expected_data, f"Loaded data from {input_file} does not match expected data from {expected_file}"
+    assert data == expected_data, f"Loaded data from {input_file} does not match expected data from {expected_output}"

@@ -1,6 +1,10 @@
 from .process_markdown import MarkDataParser
 
-def load(file):
+
+def loads(text):
     parser = MarkDataParser()
-    parser.load(file.name)
-    return parser.data
+    return parser.loads(text)
+
+
+def load(file):
+    return loads(file.read())

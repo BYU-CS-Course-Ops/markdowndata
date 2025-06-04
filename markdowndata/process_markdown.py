@@ -11,17 +11,11 @@ class MarkDataParser:
     def __init__(self):
         self.data = {}
 
-    def load(self, file: Union[str, IO]) -> dict:
+    def loads(self, text: str) -> dict:
         """
         Loads markdown content from a file path or file-like object, parses it,
         and builds a nested dictionary of structured data.
         """
-        if isinstance(file, str):
-            with open(file, 'r') as f:
-                text = f.read()
-        else:
-            text = file.read()
-
         # Split the text into Section objects based on markdown headers
         sections = split_sections(text)
 
