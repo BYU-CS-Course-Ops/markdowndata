@@ -321,7 +321,7 @@ average_values: [25, 35, 45, 50, 65]
 ```json
 {
   "name": "Test Dataset",
-  "version": 1,
+  "version": 1.0,
   "metadata": {
     "created_by": "John Doe",
     "date": "2025-06-01",
