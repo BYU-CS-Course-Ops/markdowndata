@@ -1,0 +1,5 @@
+===
+title: Test Document
+description: This is a test document with only YAML data.
+tags: [test, yaml, data]
+===

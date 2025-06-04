@@ -13,9 +13,6 @@ def build_test(expected_output: str, input_file: str = None, input_string: str =
     else:
         raise ValueError("Either input_file or input_string must be provided")
 
-    # Check if the data is loaded correctly
-    assert isinstance(data, dict), f"Loaded data from {input_file} should be a dictionary"
-
     # Load the expected data
     with open(TESTS / expected_output, 'r') as expected_output:
         expected_data = json.load(expected_output)

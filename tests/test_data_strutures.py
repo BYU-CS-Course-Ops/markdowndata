@@ -33,6 +33,27 @@ rating: 5
         expected_output="loads_data.expected.json"
     )
 
+
+def test_only_yaml_data():
+    build_test(
+        input_file="only_yaml_data.input.md",
+        expected_output="only_yaml_data.expected.json"
+    )
+
+
+def test_only_table_data():
+    build_test(
+        input_file="only_table_data.input.md",
+        expected_output="only_table_data.expected.json"
+    )
+
+def test_only_list_data():
+    build_test(
+        input_file="only_list_data.input.md",
+        expected_output="only_list_data.expected.json"
+    )
+
+
 def test_small_data():
     build_test(
         input_file="small_data.input.md",

@@ -1,4 +1,5 @@
-from typing import Union, List, IO
+from typing import List
+from .content_parser import parse_content_block
 from .section_tree import split_sections, build_section_tree
 from .utils import Node
 
@@ -18,6 +19,10 @@ class MarkDataParser:
         """
         # Split the text into Section objects based on markdown headers
         sections = split_sections(text)
+
+        # If no sections are found, parse the content block directly
+        if not sections:
+            return parse_content_block(text)
 
         # Build a hierarchical tree of sections and subsections
         section_tree = build_section_tree(sections)
