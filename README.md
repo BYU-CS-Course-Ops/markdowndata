@@ -3,7 +3,7 @@
 MarkdownData is a python tool designed to transform Markdown tables into json objects, which allows for 
 clean and structured data as well as improves data visualization. 
 
-The tool is particularly useful for data which is often being updated such as in educational contexts. 
+The tool is particularly useful for data which is often being updated, such as in educational contexts. 
 
 ## Installation
 
