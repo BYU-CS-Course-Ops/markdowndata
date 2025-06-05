@@ -7,7 +7,7 @@ The tool is particularly useful for data which is often being updated such as in
 
 ## Installation
 
-To install markdowndata, you can install it via pip:
+To install markdowndata, you can use pip:
 
 ```bash
 pip install markdowndata
