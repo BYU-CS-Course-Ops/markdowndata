@@ -62,6 +62,46 @@ Key3: Value3
 </tr>
 </table>
 
+### **MD Table**
+
+<table>
+<thead>
+<tr>
+<th>Markdown</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+
+```markdown
+# Header
+
+| Name | Age | City        |
+|------|-----|-------------|
+| John | 30  | New York    |
+| Jane | 25  | Los Angeles |
+| Doe  | 22  | Chicago     |
+```
+
+</td>
+<td>
+
+```json
+{
+  "Header": [
+    {"Name": "John", "Age": 30, "City": "New York"},
+    {"Name": "Jane", "Age": 25, "City": "Los Angeles"},
+    {"Name": "Doe", "Age": 22, "City": "Chicago"}
+  ]
+}
+```
+
+</td>
+</tr>
+</table>
+
 ### **MD List**
 
 <table>
@@ -100,47 +140,7 @@ Key3: Value3
 </tr>
 </table>
 
-### **MD Table**
-
-<table>
-    <thead>
-        <tr>
-            <th>Markdown</th>
-            <th>Result</th>
-        </tr>
-    </thead>
-    <tbody>
-<tr>
-<td>
-
-```markdown
-# Header
-
-| Name | Age | City        |
-|------|-----|-------------|
-| John | 30  | New York    |
-| Jane | 25  | Los Angeles |
-| Doe  | 22  | Chicago     |
-```
-
-</td>
-<td>
-
-```json
-{
-    "Header": [
-        {"Name": "John", "Age": 30, "City": "New York"},
-        {"Name": "Jane", "Age": 25, "City": "Los Angeles"},
-        {"Name": "Doe", "Age": 22, "City": "Chicago"}
-    ]
-}
-```
-
-</td>
-</tr>
-</table>
-
-### **MD String**
+### **MD Content**
 
 <table>
     <thead>
@@ -373,11 +373,151 @@ print(data['metadata']['created_by'])  # Output: John Doe
 print(data['summary']['total_items'])  # Output: 2
 ```
 
+## Additional Supported Values
+
+The MarkdownData tool also supports the following additional structures:
+
+### **Headless YAML Dictionary**
+
+<table>
+    <thead>
+        <tr>
+            <th>Markdown</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+<tr>
+<td>
+
+```markdown
+===
+Key1: Value1
+Key2: Value2
+Key3: Value3
+===
+```
+
+</td>
+<td>
+
+```json
+{
+    "Key1": "Value1",
+    "Key2": "Value2",
+    "Key3": "Value3"
+}
+```
+
+</td>
+</tr>
+</table>
+
+### **Headless MD Table**
+
+<table>
+    <thead>
+        <tr>
+            <th>Markdown</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+<tr>
+<td>
+
+```markdown
+| Name | Age | City        |
+|------|-----|-------------|
+| John | 30  | New York    |
+| Jane | 25  | Los Angeles |
+| Doe  | 22  | Chicago     |
+```
+
+</td>
+<td>
+
+```json
+[
+    {"Name": "John", "Age": 30, "City": "New York"},
+    {"Name": "Jane", "Age": 25, "City": "Los Angeles"},
+    {"Name": "Doe", "Age": 22, "City": "Chicago"}
+]
+```
+
+</td>
+</tr>
+</table>
+
+### **Headless MD List**
+
+<table>
+    <thead>
+        <tr>
+            <th>Markdown</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+<tr>
+<td>
+
+```markdown
+- Item1
+- Item2
+- Item3
+- Item4
+```
+
+</td>
+<td>
+
+```json
+[
+    "Item1", "Item2", "Item3", "Item4"
+    
+]
+```
+
+</td>
+</tr>
+</table>
+
+### **Headless MD Content**
+
+<table>
+    <thead>
+        <tr>
+            <th>Markdown</th>
+            <th>Result</th>
+        </tr>
+    </thead>
+    <tbody>
+<tr>
+<td>
+
+```markdown
+This is a md string with **bold** text and *italic* text.
+As well as `inline code` and a [link](https://example.com).
+```
+
+</td>
+<td>
+
+```json
+"This is a md string with **bold** text and *italic* text. As well as `inline code` and a [link](https://example.com)."
+```
+
+</td>
+</tr>
+</tbody>
+</table>
+
 ## More Examples
 
 You can find more examples in the [`tests/test_files`](tests/test_files) directory of the repository.
 
 ## Things to Note
 
-- With the `YAML Dictionaries`, dates which are in the format `YYYY-MM-DD` and not wrapped in quotes will be
+With the `YAML Dictionaries`, dates which are in the format `YYYY-MM-DD` and not wrapped in quotes will be
 converted to a `datetime.date` object. If you want to keep the date as a string, you can wrap it in quotes.

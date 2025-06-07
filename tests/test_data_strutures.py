@@ -53,6 +53,12 @@ def test_only_list_data():
         expected_output="only_list_data.expected.json"
     )
 
+def test_only_content_data():
+    build_test(
+        input_file="only_content_data.input.md",
+        expected_output="only_content_data.expected.json"
+    )
+
 
 def test_small_data():
     build_test(

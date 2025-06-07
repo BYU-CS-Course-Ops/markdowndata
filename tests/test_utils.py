@@ -14,7 +14,7 @@ def build_test(expected_output: str, input_file: str = None, input_string: str =
         raise ValueError("Either input_file or input_string must be provided")
 
     # Load the expected data
-    with open(TESTS / expected_output, 'r') as expected_output:
+    with open(TESTS / expected_output) as expected_output:
         expected_data = json.load(expected_output)
 
     # Compare the loaded data with the expected data
