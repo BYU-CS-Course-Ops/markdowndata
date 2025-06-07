@@ -1,13 +1,13 @@
 # MarkdownData
 
-MarkdownData is a python tool designed to transform Markdown tables into json objects, which allows for 
-clean and structured data as well as improves data visualization. 
+MarkdownData is a python tool designed to transform Markdown tables into JSON objects, allowing for clean 
+and structured data and improving data visulization 
 
-The tool is particularly useful for data which is often being updated, such as in educational contexts. 
+The tool is particularly useful for data that is frequently updated, such as in educational contexts. 
 
 ## Installation
 
-To install markdowndata, you can use pip:
+To install MarkdownData, use pip:
 
 ```bash
 pip install markdowndata
@@ -15,12 +15,12 @@ pip install markdowndata
 
 ## Structure
 
-Each header represents a new key value pair. Header 1 `#` are the highest level keys, and each 
-subsequent sub-header level `##`, `###`, etc. represents a nested key within the parent key.
+Each header represents a new key-value pair. Header 1 (`#`) defines the highest-level keys, and each
+subsequent sub-header level (`##,` `###,` etc.) represents a nested key within the parent key.
 
 ## Supported Values
 
-The MarkdownData tool supports the following markdown structures:
+The MarkdownData tool supports the following Markdown structures:
 
 ### **YAML Dictionaries**
 
@@ -176,12 +176,12 @@ As well as `inline code` and a [link](https://example.com).
 ## Example Usage
 
 There are two ways to use MarkdownData:
-1. **From a String**: You can pass a markdown string directly to the `loads` function.
-2. **From a File**: You can read a markdown file and pass its content to the `load` function.
+1. **From a String**: Pass a markdown string directly to the `loads` function.
+2. **From a File**: Read a markdown file and pass its content to the `load` function.
 
 ### Markdown String to JSON Object
 
-To convert a markdown string to a JSON object, you can use the following code:
+To convert a Markdown string to a JSON object, you can use the following code:
 
 ```python
 import markdowndata
@@ -217,7 +217,7 @@ rating: 5
 data = markdowndata.loads(md_string)
 ```
 
-Which will result in the following JSON object:
+Which results in the following JSON object:
 
 ```json
 {
@@ -251,7 +251,7 @@ Which will result in the following JSON object:
 
 ### Markdown File to JSON Object
 
-To convert a markdown file to a JSON object, you can use the following code:
+To convert a Markdown file to a JSON object, use the following code:
 
 ```python
 import markdowndata
@@ -260,7 +260,7 @@ with open('example.md') as file:
     data = markdowndata.load(file)
 ```
 
-With the above example, if `example.md` contains the following markdown the results will be as follows:
+If `example.md` contains the following Markdown, the results will be:
 
 <table>
     <thead>
@@ -519,5 +519,9 @@ You can find more examples in the [`tests/test_files`](tests/test_files) directo
 
 ## Things to Note
 
-With the `YAML Dictionaries`, dates which are in the format `YYYY-MM-DD` and not wrapped in quotes will be
-converted to a `datetime.date` object. If you want to keep the date as a string, you can wrap it in quotes.
+The two supported structures, `headless` and `with header`, should not be used together. The `headless` values 
+are for creating non-nested JSON objects or arrays without keys (headers), while `with header` values are 
+for creating JSON objects with multiple key-value pairs based on the Markdown headers.
+
+With `YAML Dictionaries`, dates in the format `YYYY-MM-DD` that are not wrapped in quotes will be converted 
+to `datetime.date` objects. To keep the date as a string, wrap it in quotes.
