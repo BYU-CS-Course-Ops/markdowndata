@@ -176,8 +176,8 @@ As well as `inline code` and a [link](https://example.com).
 ## Example Usage
 
 There are two ways to use MarkdownData:
-1. **From a String**: Pass a markdown string directly to the `loads` function.
-2. **From a File**: Read a markdown file and pass its content to the `load` function.
+1. **From a String**: Pass a Markdown string directly to the `loads` function.
+2. **From a File**: Read a Markdown file and pass its content to the `load` function.
 
 ### Markdown String to JSON Object
 
