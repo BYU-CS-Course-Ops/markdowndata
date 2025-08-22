@@ -1,4 +1,5 @@
 from typing import List
+
 from .content_parser import parse_content_block
 from .section_tree import split_sections, build_section_tree
 from .utils import Node
@@ -9,6 +10,7 @@ class MarkDataParser:
     Parses a Markdown document into a JSON-like dictionary structure.
     Builds a hierarchy of sections and converts each section's content into a structured form.
     """
+
     def __init__(self):
         self.data = {}
 
@@ -29,7 +31,7 @@ class MarkDataParser:
 
         # Convert the section tree into a JSON-like dictionary structure
         self.data = self.build_dict(section_tree)
-        return self.data
+        return self.data['Root']
 
     def build_dict(self, sections: List[Node]) -> dict:
         """
@@ -55,4 +57,5 @@ class MarkDataParser:
 
             # Use the node's title as the key in the dictionary
             result[node.title] = merged
+
         return result
