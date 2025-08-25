@@ -12,6 +12,17 @@ def split_sections(text: str):
     matches = list(pattern.finditer(text))
 
     sections = []
+
+    # First grab anything before the initial header
+    end = matches[0].start() if matches else len(text)
+    sections.append(Section(
+        title="",  # The section's title text
+        level=0,  # The number of # symbols indicates nesting level
+        start=0,  # Position where this header starts in the text
+        end=end,  # Position where this section's content ends
+        content=text[:end].strip()  # The actual text content of this section (excluding header)
+    ))
+
     for i, match in enumerate(matches):
         # Calculate the 'end' of the current section:
         # It's the start of the next header or the end of the document.
@@ -34,6 +45,12 @@ def build_section_tree(sections):
     Uses a stack to track the current section hierarchy.
     """
     root = Node(title='Root', level=0, parsed={}, subsections=[])
+
+    # If the initial section is level 0, it makes part of the root
+    if sections[0].level == 0:
+        root.parsed = parse_content_block(sections[0].content)
+        sections.pop(0)
+
     stack = [root]
 
     for section in sections:
@@ -55,4 +72,4 @@ def build_section_tree(sections):
         # Push this node to the stack (might have its own children)
         stack.append(node)
 
-    return root.subsections
+    return [root]
