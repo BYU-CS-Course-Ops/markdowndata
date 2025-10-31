@@ -39,7 +39,7 @@ def yaml_parser(text: str) -> dict | list:
     """
     match = re.search(r'===\s*\n(.*?)\n===', text, re.DOTALL)
     if match:
-        # safe loads already converts to ints/floats. There is no need to convert
+        # safe loads converts to values integers and floats
         yaml_data = yaml.safe_load(match.group(1))
         return yaml_data
     return {}
