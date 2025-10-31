@@ -33,6 +33,12 @@ rating: 5
         expected_data_file="loads_data.expected.json"
     )
 
+def test_only_yaml_list_data():
+    build_test(
+        input_file="only_yaml_list_data.input.md",
+        expected_data_file="only_yaml_list_data.expected.json"
+    )
+
 
 def test_only_yaml_data():
     build_test(

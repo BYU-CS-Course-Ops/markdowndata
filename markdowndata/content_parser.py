@@ -15,7 +15,7 @@ def detect_value_type(text: str) -> str | None:
 
     # YAML detection (delimited by ===)
     if re.search(r'===\s*\n(.*?)\n===', text, re.DOTALL):
-        return 'yaml_dict'
+        return 'yaml'
 
     # Convert markdown to HTML
     soup = get_md_soup(text)
@@ -32,16 +32,16 @@ def detect_value_type(text: str) -> str | None:
     return 'md_text'
 
 
-def yaml_dict_parser(text: str) -> dict:
+def yaml_parser(text: str) -> dict | list:
     """
-    Parse YAML from a string (surrounded by ===) and returns it as a dictionary.
+    Parse YAML from a string (surrounded by ===) and returns it as a dictionary or list.
     Assumes YAML is a block at the beginning of the text.
     """
     match = re.search(r'===\s*\n(.*?)\n===', text, re.DOTALL)
     if match:
+        # safe loads already converts to ints/floats. There is no need to convert
         yaml_data = yaml.safe_load(match.group(1))
-        if yaml_data:
-            return {k: convert_value(v) for k, v in yaml_data.items()}
+        return yaml_data
     return {}
 
 
@@ -167,7 +167,7 @@ def parse_content_block(text: str):
         raise ValueError(f'No parser found for content: {text}')
 
     parser_functions = {
-        'yaml_dict': yaml_dict_parser,
+        'yaml': yaml_parser,
         'md_table': md_table_parser,
         'md_list': md_list_parser,
         'md_text': md_text_parser
