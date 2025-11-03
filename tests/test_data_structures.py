@@ -116,6 +116,12 @@ def test_sample_data():
         expected_data_file="sample_data.expected.json"
     )
 
+def test_small_yaml_md_data():
+    build_test(
+        input_file="small_yaml_md_data.input.md",
+        expected_data_file="small_yaml_md_data.expected.json"
+    )
+
 
 def test_initial_dict():
     build_test(
