@@ -32,17 +32,12 @@ def detect_value_type(text: str) -> str | None:
     return 'md_text'
 
 
-def yaml_dict_parser(text: str) -> dict:
+def yaml_parser(text: str) -> dict:
     """
-    Parse YAML from a string (surrounded by ===) and returns it as a dictionary.
-    Assumes YAML is a block at the beginning of the text.
+    Parse YAML from a string (surrounded by ===)
     """
     match = re.search(r'===\s*\n(.*?)\n===', text, re.DOTALL)
-    if match:
-        yaml_data = yaml.safe_load(match.group(1))
-        if yaml_data:
-            return {k: convert_value(v) for k, v in yaml_data.items()}
-    return {}
+    return yaml.safe_load(match.group(1))
 
 
 def md_table_parser(text: str) -> list[dict]:
@@ -167,7 +162,7 @@ def parse_content_block(text: str):
         raise ValueError(f'No parser found for content: {text}')
 
     parser_functions = {
-        'yaml_dict': yaml_dict_parser,
+        'yaml_dict': yaml_parser,
         'md_table': md_table_parser,
         'md_list': md_list_parser,
         'md_text': md_text_parser

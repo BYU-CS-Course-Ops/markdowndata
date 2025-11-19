@@ -2,9 +2,15 @@
   "name": "Test Dataset",
   "version": 1.0,
   "metadata": {
-    "created_by": "John Doe",
-    "date": "2025-06-01",
-    "tags": ["example", "test", "json"]
+    "content": {
+      "created_by": "John Doe",
+      "date": "2025-06-01"
+    },
+    "tags": [
+      "example",
+      "test",
+      "json"
+    ]
   },
   "data": [
     {
@@ -20,7 +26,11 @@
   ],
   "summary": {
     "total_items": 2,
-    "average_values": [25, 35, 45]
+    "average_values": [
+      25,
+      35,
+      45
+    ]
   },
   "notes": [
     "This is a test dataset.",
