@@ -1,8 +1,10 @@
 {
   "Foo 1": {
-    "Author": "Bar",
-    "Date": "Baz",
-    "Title": "Foo",
+    "content": {
+      "Title": "Foo",
+      "Author": "Bar",
+      "Date": "Baz"
+    },
     "Bar": [
       {
         "Name": "Foo",
@@ -19,16 +21,16 @@
     ],
     "Baz": [
       {
-        "Description": "A foo item",
-        "Item": "Foo"
+        "Item": "Foo",
+        "Description": "A foo item"
       },
       {
-        "Description": "A bar item",
-        "Item": "Bar"
+        "Item": "Bar",
+        "Description": "A bar item"
       },
       {
-        "Description": "A baz item",
-        "Item": "Baz"
+        "Item": "Baz",
+        "Description": "A baz item"
       }
     ]
   }

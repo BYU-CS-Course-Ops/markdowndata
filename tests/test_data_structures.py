@@ -120,5 +120,5 @@ def test_initial_dict():
         # baz
         quux
         """,
-        expected_data={'foo': 'bar', 'baz': 'quux'}
+        expected_data={'baz': 'quux', 'content': {'foo': 'bar'}}
     )

@@ -41,12 +41,8 @@ class MarkDataParser:
         for node in sections:
             sub_dict = self.build_dict(node.subsections)
 
-            if isinstance(node.parsed, dict):
-                # If the parsed content is a dictionary, merge it with its subsections
-                merged = {**node.parsed, **sub_dict}
-            elif node.subsections:
-                # If subsections exist but parsed content is not a dict,
-                # wrap both into a new dictionary
+            if node.subsections:
+                # If subsections exist and there is parsed content wrap both into a new dictionary
                 merged = {
                     'content': node.parsed,
                     **sub_dict
