@@ -9,7 +9,15 @@ def split_sections(text: str):
     Each section is identified by a header (e.g., #, ##, ###).
     """
     pattern = re.compile(r'^(?P<header>#+) (?P<title>[^\n]+)', re.MULTILINE)
-    matches = list(pattern.finditer(text))
+    code_spans = [match.span() for match in re.finditer(r'```.*?```', text, re.DOTALL)]
+
+    def is_in_code_block(pos: int) -> bool:
+        for start, end in code_spans:
+            if start <= pos < end:
+                return True
+        return False
+
+    matches = [match for match in pattern.finditer(text) if not is_in_code_block(match.start())]
 
     sections = []
 

@@ -122,3 +122,11 @@ def test_initial_dict():
         """,
         expected_data={'baz': 'quux', 'content': {'foo': 'bar'}}
     )
+
+
+
+def test_code_block_header_data():
+    build_test(
+        input_file="code_block_header_data.input.md",
+        expected_data_file="code_block_header_data.expected.json"
+    )
